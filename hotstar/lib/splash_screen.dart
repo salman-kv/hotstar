@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:hotstar/home/home_page.dart';
+import 'package:hotstar/home/main_page.dart';
 import 'package:video_player/video_player.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
       });
       Timer(const Duration(milliseconds:3000), () {
         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx){
-          return HomePage();
+          return  MainPage();
         }));
        });
       super.initState();
