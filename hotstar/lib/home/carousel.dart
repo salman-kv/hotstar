@@ -56,7 +56,7 @@ class Carousel extends StatelessWidget {
                         '${mainmovie[index]['release_date']}',
                         style: const TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255),
-                            fontSize: 18,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                             fontFamily: AutofillHints.addressCityAndState),
                       ),

@@ -24,7 +24,7 @@ class PotrateList extends StatelessWidget {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: List.generate(latest.length, (index) {
+            children: List.generate(listData.length, (index) {
               return Container(
                 margin: const EdgeInsets.all(5),
                 height: 200,
@@ -34,7 +34,7 @@ class PotrateList extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                   image: DecorationImage(
                       image: NetworkImage(
-                          'https://image.tmdb.org/t/p/w500/${latest[index]["poster_path"]}'),
+                          'https://image.tmdb.org/t/p/w500/${listData[index]["poster_path"]}'),
                       fit: BoxFit.fill),
                 ),
                 // child: Text('haaa'),

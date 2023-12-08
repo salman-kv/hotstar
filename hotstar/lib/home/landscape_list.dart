@@ -23,7 +23,7 @@ class LandScapeList extends StatelessWidget {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: List.generate(trending.length, (index) {
+            children: List.generate(ListData.length, (index) {
               return Container(
                 margin: const EdgeInsets.all(4),
                 height: 140,
@@ -32,29 +32,31 @@ class LandScapeList extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5),
                     image: DecorationImage(
                         image: NetworkImage(
-                            'https://image.tmdb.org/t/p/w500/${trending[index]["backdrop_path"]}'),
+                            'https://image.tmdb.org/t/p/w500/${ListData[index]["backdrop_path"]}',),
                         fit: BoxFit.cover)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                   const Icon(
-                    Icons.play_arrow,
-                    color: Colors.white,
+                    const Icon(
+                      Icons.play_arrow,
+                      color: Colors.white,
                     ),
                     Row(
                       children: [
                         Expanded(
                           child: Text(
-                            trending[index]["title"],
-                          
-                            style: TextStyle(
+                            ListData[index]["title"],
+                            style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
-                        Icon(Icons.menu,color: Colors.white,)
+                        const Icon(
+                          Icons.more_vert_outlined,
+                          color: Colors.white,
+                        )
                       ],
                     ),
                   ],

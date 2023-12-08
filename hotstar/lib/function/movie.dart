@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 List<dynamic> latest=[];
 List<dynamic> trending=[];
 List<dynamic> mainmovie=[];
+List<dynamic> tvShow=[];
 ValueNotifier<List<dynamic>> searchListener=ValueNotifier([]); 
 
 

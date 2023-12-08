@@ -42,6 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
       await getdata('movie/now_playing',mainmovie);
       await getdata('movie/popular',latest);
       await getdata('trending/movie/day',trending);
+      await getdata('trending/tv/day',tvShow);
 
        // ignore: use_build_context_synchronously
        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx){
