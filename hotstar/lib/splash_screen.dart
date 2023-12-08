@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:hotstar/api/calling_api.dart';
+import 'package:hotstar/function/movie.dart';
 import 'package:hotstar/home/main_page.dart';
 import 'package:video_player/video_player.dart';
 
@@ -19,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
       initState() {
       // _videoPlayerController=VideoPlayerController.network("https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4");
       _videoPlayerController=VideoPlayerController.asset("assets/video/hoststarPhone.mp4");
-      _initializeVideoPlayerFuture=_videoPlayerController.initialize().then((value){
+      _initializeVideoPlayerFuture =_videoPlayerController.initialize().then((value){
         _videoPlayerController.play();
         _videoPlayerController.setVolume(0);
         _videoPlayerController.setLooping(true);
@@ -27,13 +29,31 @@ class _SplashScreenState extends State<SplashScreen> {
           
         });
       });
-      Timer(const Duration(milliseconds:3000), () {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx){
-          return  MainPage();
-        }));
-       });
+      splashLoad();
+      // Timer(const Duration(milliseconds:3000), () {
+      //   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx){
+      //     return  MainPage();
+      //   }));
+      //  });
       super.initState();
     }
+
+    splashLoad() async {
+      await getdata('movie/now_playing',mainmovie);
+      await getdata('movie/popular',latest);
+      await getdata('trending/movie/day',trending);
+
+       // ignore: use_build_context_synchronously
+       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx){
+          return  MainPage();
+        }));
+    }
+
+    @override
+  void dispose() {
+    _videoPlayerController;
+    super.dispose();
+  }
 
 
   @override

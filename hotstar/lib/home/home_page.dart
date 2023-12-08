@@ -1,11 +1,12 @@
-
 import 'package:flutter/material.dart';
+import 'package:hotstar/function/movie.dart';
 import 'package:hotstar/home/carousel.dart';
-import 'package:hotstar/home/lates_release.dart';
-import 'package:hotstar/home/sports.dart';
+import 'package:hotstar/home/potrate_list.dart';
+import 'package:hotstar/home/landscape_list.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  final List<dynamic>? apidata;
+  const HomeScreen({super.key, this.apidata});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class HomeScreen extends StatelessWidget {
                   height: 80,
                   width: 80,
                   child: Image.asset('assets/image/DisneyHotsta.png'),
+                  // child: Image.network('https://image.tmdb.org/t/p/w500/qV4fdXXUm5xNlEJ2jw7af3XxuQB.jpg'),
                 ),
                 const Icon(
                   Icons.cast,
@@ -33,11 +35,11 @@ class HomeScreen extends StatelessWidget {
           const SliverToBoxAdapter(
             child:Carousel()
           ),
-          const SliverToBoxAdapter(
-            child: LatestRelease(),
+           SliverToBoxAdapter(
+            child: PotrateList(name: 'Latest Releases',listData: latest),
           ),
-          const SliverToBoxAdapter(
-            child: Sports(),
+           SliverToBoxAdapter(
+            child: LandScapeList(name: 'Trending', ListData: trending),
           ),
 
           SliverList(delegate: SliverChildBuilderDelegate(

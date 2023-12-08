@@ -5,8 +5,9 @@ import 'package:hotstar/home/new_hot.dart';
 import 'package:hotstar/home/profile.dart';
 import 'package:hotstar/home/search_page.dart';
 
+// ignore: must_be_immutable
 class MainPage extends StatefulWidget {
-   const MainPage({super.key});
+    MainPage({super.key,data});
 
   @override
   State<MainPage> createState() => _MainPageState();
