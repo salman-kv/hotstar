@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hotstar/home/download.dart';
-import 'package:hotstar/home/home_page.dart';
-import 'package:hotstar/home/new_hot.dart';
-import 'package:hotstar/home/profile.dart';
-import 'package:hotstar/home/search_page.dart';
+import 'package:hotstar/screens/download.dart';
+import 'package:hotstar/screens/home_page.dart';
+import 'package:hotstar/screens/new_hot.dart';
+import 'package:hotstar/screens/profile.dart';
+import 'package:hotstar/screens/search_page.dart';
 
 // ignore: must_be_immutable
 class MainPage extends StatefulWidget {
@@ -17,7 +17,7 @@ class _MainPageState extends State<MainPage> {
   int current = 0;
   List<Widget> pages = [
     const HomeScreen(),
-    const SearchPage(),
+     SearchPage(),
     const NewHot(),
     const Download(),
     const Profile()
@@ -28,20 +28,8 @@ class _MainPageState extends State<MainPage> {
     // MaterialApp
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 3, 0, 15),
-        body: Stack(
-          children: [
-            pages[current],
-            Positioned(
-              bottom: 0,
-              left: MediaQuery.of(context).size.width / 2,
-              child: Text(
-                'hai',
-                style: TextStyle(color: Colors.amber),
-              ),
-            ),
-          ],
-        ),
+        backgroundColor: Theme.of(context).colorScheme.background ,
+        body: pages[current],
         bottomNavigationBar: BottomNavigationBar(
             currentIndex: current,
             onTap: (value) {

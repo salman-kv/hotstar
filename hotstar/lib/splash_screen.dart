@@ -1,8 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hotstar/api/calling_api.dart';
-import 'package:hotstar/function/movie.dart';
-import 'package:hotstar/home/main_page.dart';
+import 'package:hotstar/screens/main_page.dart';
 import 'package:video_player/video_player.dart';
 
 class SplashScreen extends StatefulWidget {

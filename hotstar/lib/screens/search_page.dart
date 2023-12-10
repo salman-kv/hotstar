@@ -1,13 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hotstar/api/calling_api.dart';
-import 'package:hotstar/function/movie.dart';
 
+// ignore: must_be_immutable
 class SearchPage extends StatelessWidget {
-  const SearchPage({super.key});
+   SearchPage({super.key});
+  Timer? _debouncer;
 
   @override
   Widget build(BuildContext context) {
-    SearchEmpty();
+    searchEmpty();
     return Column(
       children: [
         Padding(
@@ -17,13 +20,20 @@ class SearchPage extends StatelessWidget {
             child: SearchBar(
               onChanged: (value) {
                 if (value.isEmpty) {
-                  SearchEmpty();
+                  searchEmpty();
                 } else {
-                  serchingApi(value);
+                  if(_debouncer?.isActive ?? false){
+                    _debouncer?.cancel();
+                  }
+                  _debouncer=Timer(const Duration(milliseconds: 500), () {
+                     serchingApi(value);
+                  });
                 }
               },
+              textStyle: MaterialStatePropertyAll(Theme.of(context).textTheme.displaySmall),
               leading: const Icon(Icons.search),
               hintText: 'Movies,shows and more',
+              hintStyle: MaterialStatePropertyAll(Theme.of(context).textTheme.displaySmall),
               trailing: const [Icon(Icons.mic_none_outlined)],
               shape: const MaterialStatePropertyAll(RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(5)))),
@@ -101,10 +111,7 @@ class SearchPage extends StatelessWidget {
                                           children: [
                                             Text(
                                               valu[index]['title'],
-                                              style: const TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold),
+                                              style: Theme.of(context).textTheme.bodyMedium
                                             ),
                                             Text(
                                               'Language : ${valu[index]['original_language']}',
