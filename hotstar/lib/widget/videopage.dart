@@ -37,7 +37,7 @@ class _BeShowState extends State<BeShow> {
             height: 350,
             child: YoutubePlayer(
               controller: _controller,
-              showVideoProgressIndicator: true,
+              showVideoProgressIndicator: true, 
             ),
           ),
            Padding(

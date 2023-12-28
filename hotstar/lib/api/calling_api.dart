@@ -6,43 +6,55 @@ List<dynamic> latest = [];
 List<dynamic> trending = [];
 List<dynamic> mainmovie = [];
 List<dynamic> tvShow = [];
+List<dynamic> upComing = [];
+List<dynamic> hot = [];
 ValueNotifier<List<dynamic>> searchListener = ValueNotifier([]);
 
 const baseUrl = 'https://api.themoviedb.org/3/';
 const apikey = '?api_key=309101d3dc7e4c3c6b9970ea9fcfb5b0';
-// https://api.themoviedb.org/3/trending/tv/day?api_key=309101d3dc7e4c3c6b9970ea9fcfb5b0
 const searchUri =
     'https://api.themoviedb.org/3/search/movie?api_key=309101d3dc7e4c3c6b9970ea9fcfb5b0&query=';
 
 getdata(String url, List<dynamic> list) async {
   Uri uri = Uri.parse("$baseUrl$url$apikey");
   final response = await http.get(uri);
-  final data = response.body;
-  final maindata = jsonDecode(data);
-  await convertApiOutputToList(maindata, list);
-  return true;
+  if (response.statusCode == 200) {
+    final data = response.body;
+    final maindata = jsonDecode(data);
+    await convertApiOutputToList(maindata, list);
+  } else {
+    throw (response.statusCode);
+  }
 }
 
 serchingApi(String searchString) async {
   searchListener.value.clear();
   Uri uri = Uri.parse("$searchUri$searchString");
   final response = await http.get(uri);
-  final List<dynamic> data = jsonDecode(response.body)["results"];
-  for (var element in data) {
-    searchListener.value.add(element);
+  if (response.statusCode == 200) {
+    final List<dynamic> data = jsonDecode(response.body)["results"];
+    for (var element in data) {
+      searchListener.value.add(element);
+    }
+    searchListener.notifyListeners();
+  } else {
+    throw (response.statusCode);
   }
-  searchListener.notifyListeners();
 }
 
 getYoutube(int id) async {
   Uri uri = Uri.parse("$baseUrl/movie/$id/videos$apikey");
   final response = await http.get(uri);
-  final List<dynamic> data = jsonDecode(response.body)['results'];
+  if (response.statusCode == 200) {
+    final List<dynamic> data = jsonDecode(response.body)['results'];
 
-  if (data.isEmpty) {
-    return null;
+    if (data.isEmpty) {
+      return null;
+    } else {
+      return data[0]['key'];
+    }
   } else {
-    return data[0]['key'];
+    throw (response.statusCode);
   }
 }
 

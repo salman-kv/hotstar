@@ -25,7 +25,7 @@ class PotrateList extends StatelessWidget {
               return GestureDetector(
                  onTap: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
-                return  SingleFilmShow( mainList: mainmovie[index],);
+                return  SingleFilmShow( mainList: listData[index],);
               }));
             },
                 child: Container(

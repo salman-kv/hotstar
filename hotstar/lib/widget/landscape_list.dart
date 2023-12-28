@@ -25,7 +25,7 @@ class LandScapeList extends StatelessWidget {
               return GestureDetector(
                  onTap: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
-                return  SingleFilmShow( mainList: mainmovie[index],);
+                return  SingleFilmShow( mainList: ListData[index],);
               }));
             },
                 child: Container(

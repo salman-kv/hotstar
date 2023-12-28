@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotstar/screens/download.dart';
 import 'package:hotstar/screens/home_page.dart';
-import 'package:hotstar/screens/new_hot.dart';
+import 'package:hotstar/screens/hot.dart';
 import 'package:hotstar/screens/profile.dart';
 import 'package:hotstar/screens/search_page.dart';
 
@@ -18,7 +18,7 @@ class _MainPageState extends State<MainPage> {
   List<Widget> pages = [
     const HomeScreen(),
      SearchPage(),
-    const NewHot(),
+     Hot(),
     const Download(),
     const Profile()
   ];

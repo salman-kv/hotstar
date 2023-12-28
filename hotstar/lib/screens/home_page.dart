@@ -35,6 +35,12 @@ class HomeScreen extends StatelessWidget {
            SliverToBoxAdapter(
             child: PotrateList(name: 'Tv Shows',listData: tvShow),
           ),
+          const SliverToBoxAdapter(
+            child:  SizedBox(height: 20,),
+          ),
+           SliverToBoxAdapter(
+            child: LandScapeList(name: 'Upcoming', ListData: upComing),
+          ),
         ],
       );
   }
